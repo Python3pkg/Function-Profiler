@@ -143,7 +143,7 @@ class General(unittest.TestCase):
 
         foo_name = "foo"
         self.assertEqual(profiler.FunctionLogger.call_frequencies, {foo_name: 1})
-        self.assertCountEqual(profiler.FunctionLogger.call_times.keys(), [foo_name])
+        self.assertCountEqual(list(profiler.FunctionLogger.call_times.keys()), [foo_name])
 
     def test_decorator_bad_naming(self):
         """
@@ -191,7 +191,7 @@ class General(unittest.TestCase):
 
         expected_call_frequencies = {"foo": 4, "bar": 3, "baz": 1}
         self.assertCountEqual(profiler.FunctionLogger.call_frequencies, expected_call_frequencies)
-        self.assertCountEqual(profiler.FunctionLogger.call_times.keys(), ["foo", "bar", "baz"])
+        self.assertCountEqual(list(profiler.FunctionLogger.call_times.keys()), ["foo", "bar", "baz"])
         self.assertEqual(len(profiler.FunctionLogger.call_times["foo"]), 4)
         self.assertEqual(len(profiler.FunctionLogger.call_times["bar"]), 3)
         self.assertEqual(len(profiler.FunctionLogger.call_times["baz"]), 1)
@@ -222,7 +222,7 @@ class General(unittest.TestCase):
         expected_call_frequencies = {"__init__": 3, additional_function_qualname: 2}
         self.assertCountEqual(profiler.FunctionLogger.call_frequencies, expected_call_frequencies)
         self.assertCountEqual(
-            profiler.FunctionLogger.call_times.keys(),
+            list(profiler.FunctionLogger.call_times.keys()),
             ["__init__", additional_function_qualname]
         )
 
